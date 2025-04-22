@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Real-World Git Workflow</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js/dist/theme/black.css">
+</head>
+<body>
+
+<div class="reveal">
+  <div class="slides">
+
+    <section>
+      <h1>🚀 Git Project Workflow</h1>
+      <p>How to Work Like a Real Developer</p>
+      <p><small>For students learning team-based Git workflows</small></p>
+    </section>
+
+    <section>
+      <h2>👩‍💻 1. Clone the Repository</h2>
+      <pre><code>git clone https://github.com/your-org/project.git</code></pre>
+      <p>This gives you a local copy of the project</p>
+    </section>
+
+    <section>
+      <h2>📦 2. Create a New Branch</h2>
+      <pre><code>git checkout -b feature/my-task</code></pre>
+      <p>Always work on a separate branch. Never commit directly to <code>main</code>.</p>
+    </section>
+
+    <section>
+      <h2>🔁 3. Stay Up to Date</h2>
+      <p>Before pushing or merging, **pull the latest main**:</p>
+      <pre><code>
+git checkout main
+git pull origin main
+git checkout feature/my-task
+git merge main
+      </code></pre>
+      <p>Fix any conflicts if needed</p>
+    </section>
+
+    <section>
+      <h2>🧪 4. Make Changes & Commit</h2>
+      <pre><code>
+git add .
+git commit -m "Add feature X"
+      </code></pre>
+      <p>Commit often. Make each commit meaningful.</p>
+    </section>
+
+    <section>
+      <h2>📤 5. Push Your Branch</h2>
+      <pre><code>git push origin feature/my-task</code></pre>
+      <p>This publishes your work to GitHub</p>
+    </section>
+
+    <section>
+      <h2>📬 6. Create a Pull Request (PR)</h2>
+      <p>- Go to GitHub → New Pull Request</p>
+      <p>- Base: <code>main</code></p>
+      <p>- Compare: <code>feature/my-task</code></p>
+      <p>Ask for review. Never self-merge without checks!</p>
+    </section>
+
+    <section>
+      <h2>⚠️ Common Mistakes</h2>
+      <ul>
+        <li>Working directly on <code>main</code></li>
+        <li>Not syncing with <code>main</code> before PR</li>
+        <li>Messy or unrelated commits in PR</li>
+        <li>Forgetting to pull regularly</li>
+      </ul>
+    </section>
+
+    <section>
+       <h2>🧠 Why Not Just Pull?</h2>
+       <p>💬 "Can’t I just do <code>git pull</code> on my branch?"</p>
+       <ul>
+           <li>That pulls updates from <strong>your remote branch</strong> (e.g. <code>origin/feature-x</code>)</li>
+           <li><strong>It doesn’t bring in changes from <code>main</code></strong></li>
+           <li>You’re still behind if <code>main</code> moved forward</li>
+       </ul>
+    </section>
+
+    <section>
+        <h2>🚫 Why <code>git pull origin main</code> Is Wrong Here</h2>
+        <p>Doing this from your feature branch:</p>
+        <pre><code>git pull origin main</code></pre>
+        <ul>
+            <li>It merges <code>main</code> into your branch in one step</li>
+            <li>✅ But it hides the update to <code>main</code> in your local copy</li>
+            <li>⚠️ You'll forget to update <code>main</code> next time</li>
+            <li>🧼 Proper method is cleaner and separates concerns</li>
+        </ul>
+    </section>
+
+    <section>
+    <h2>✅ Proper Workflow Recap</h2>
+    <ol>
+        <li><code>git checkout main</code></li>
+        <li><code>git pull origin main</code> ← 💡 updates local main</li>
+        <li><code>git checkout feature-x</code></li>
+        <li><code>git merge main</code> ← brings latest main into your branch</li>
+    </ol>
+    <p>🔁 Do this every time you want to work on your project</p>
+    </section>
+      
+    <section>
+        <h2>📊 Visualizing the Problem</h2>
+        <p>Your branch is behind <code>main</code></p>
+        <pre><code>
+      main:   A──B──C──D
+                     ↑
+      feature: A──B──C──[Your work here]
+        </code></pre>
+        <ul>
+          <li><code>main</code> moved forward → Your branch is behind</li>
+          <li><strong>You must pull + merge</strong> before continuing</li>
+        </ul>
+      </section>
+      
+      <section>
+        <h2>✅ After Syncing</h2>
+        <p>Proper sync brings you up to date:</p>
+        <pre><code>
+      main:    A──B──C──D
+                        ↑
+      feature: A──B──C─────M
+                           ↑
+                     (merged main)
+        </code></pre>
+        <ul>
+          <li>Your branch now includes all changes from <code>main</code></li>
+          <li>Clean merge history, fewer conflicts</li>
+        </ul>
+      </section>
+      
+    <section>
+      <h2>✅ How to Fix "Behind Main"</h2>
+      <ol>
+        <li><code>git checkout main</code></li>
+        <li><code>git pull origin main</code></li>
+        <li><code>git checkout your-branch</code></li>
+        <li><code>git merge main</code></li>
+        <li>Fix conflicts & push</li>
+      </ol>
+      <p><strong>Now your branch is up to date.</strong></p>
+    </section>
+
+    <section>
+      <h2>🎯 Summary</h2>
+      <ul>
+        <li>✅ One branch per person</li>
+        <li>✅ Pull latest main often</li>
+        <li>✅ PR only after syncing with main</li>
+        <li>✅ Clean commits, meaningful messages</li>
+      </ul>
+    </section>
+
+    <section>
+      <h1>Questions? 💬</h1>
+      <p>Ask now before your Git messes up your group project 😅</p>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://unpkg.com/reveal.js/dist/reveal.js"></script>
+<script>
+  Reveal.initialize();
+</script>
+
+</body>
+</html>
